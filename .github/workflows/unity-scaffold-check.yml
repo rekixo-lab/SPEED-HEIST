@@ -1,0 +1,16 @@
+name: Unity Scaffold Static Check
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  static-structure:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Unity project structure and metadata
+        run: python3 tools/check_unity_scaffold.py
