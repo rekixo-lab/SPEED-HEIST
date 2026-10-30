@@ -55,7 +55,8 @@ public static class SpeedHeistSetup {
   UniversalRenderPipelineAsset urp=AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(PipelinePath);
   if(urp==null){urp=UniversalRenderPipelineAsset.Create(rd);AssetDatabase.CreateAsset(urp,PipelinePath);}
   GraphicsSettings.defaultRenderPipeline=urp;
-  for(int i=0;i<QualitySettings.names.Length;i++)QualitySettings.SetRenderPipelineAssetAt(i,urp);
+  // Graphics default asset applies to quality tiers without an explicit override.
+  QualitySettings.renderPipeline=null;
  }
  static Material Mat(string name,Color color){
   string path="Assets/_SpeedHeist/Materials/"+name+".mat";
